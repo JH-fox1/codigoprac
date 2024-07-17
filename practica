@@ -1,0 +1,31 @@
+import requests
+from bs4 import BeautifulSoup
+
+url = "https://listado.mercadolibre.com.pe/iphone-15"
+
+response = requests.get(url)
+
+"""
+comprobar coneccion con la pagina
+"""
+if response.status_code == 200:
+    print("se obtuvo la pagina")
+
+
+page = requests.get('https://listado.mercadolibre.com.pe/iphone-15')
+soup = BeautifulSoup(page.text, 'html.parser')
+productos = soup.find_all('div', class_="ui-search-result__wrapper")
+print(len(productos))
+
+
+for producto in productos:
+    titulo = producto.find('h2', class_= "poly-box")
+    if titulo:
+        print(titulo.text.strip())
+        
+else:
+    print ("error al encontrar")
+
+"""
+-----------------------
+"""
