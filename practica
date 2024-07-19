@@ -19,12 +19,24 @@ print(len(productos))
 
 
 for producto in productos:
-    titulo = producto.find('h2', class_= "poly-box")
-    if titulo:
-        print(titulo.text.strip())
-        
-else:
-    print ("error al encontrar")
+ nombre = producto.find('h2', class_= "poly-box")
+ precio = producto.find('span', class_= "andes-money-amount__fraction")
+ estrellas = producto.find('span', class_="poly-reviews__rating")
+ votos = producto.find('span', class_="poly-reviews__total")
+ vendedor = producto.find('span', class_="poly-component__seller")
+  
+ 
+ if nombre:
+   print(nombre.text.strip()) 
+ if precio:
+     print(precio.text.strip())
+ if estrellas:
+     print(estrellas.text.strip())    
+ if votos:
+     print(votos.text.strip())   
+ if vendedor:
+     print(vendedor.get_text(strip=True, separator=' '))
+ print("----------")
 
 """
 -----------------------
